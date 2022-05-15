@@ -2,6 +2,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
@@ -9,6 +12,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
@@ -23,15 +28,10 @@ import androidx.compose.ui.Modifier
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun App() {
-    var checked by remember {
-        mutableStateOf(false)
-    }
-    var clickCount by remember {
-        mutableStateOf(0)
-    }
-    var value by remember {
-        mutableStateOf(0.5f)
-    }
+    var checked by remember { mutableStateOf(false) }
+    var clickCount by remember { mutableStateOf(0) }
+    var value by remember { mutableStateOf(0.5f) }
+    var navigationBarItemIndex by remember { mutableStateOf(0) }
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(title = {
@@ -41,6 +41,31 @@ fun App() {
         floatingActionButton = {
             FloatingActionButton(onClick = {}) {
                 Icon(Icons.Filled.Add, contentDescription = null)
+            }
+        },
+        bottomBar = {
+            NavigationBar {
+                NavigationBarItem(
+                    selected = navigationBarItemIndex == 0,
+                    enabled = navigationBarItemIndex != 0,
+                    icon = { Icon(Icons.Filled.Home, contentDescription = null) },
+                    label = { Text("Home") },
+                    onClick = { navigationBarItemIndex = 0 },
+                )
+                NavigationBarItem(
+                    selected = navigationBarItemIndex == 1,
+                    enabled = navigationBarItemIndex != 1,
+                    icon = { Icon(Icons.Filled.Person, contentDescription = null) },
+                    label = { Text("Person") },
+                    onClick = { navigationBarItemIndex = 1 },
+                )
+                NavigationBarItem(
+                    selected = navigationBarItemIndex == 2,
+                    enabled = navigationBarItemIndex != 2,
+                    icon = { Icon(Icons.Filled.Settings, contentDescription = null) },
+                    label = { Text("Setting") },
+                    onClick = { navigationBarItemIndex = 2 },
+                )
             }
         }
     ) { innerPadding ->

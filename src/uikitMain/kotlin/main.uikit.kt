@@ -51,8 +51,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
         window!!.rootViewController = Application("Compose-iOS-Bootstrap") {
             Column {
                 // To skip upper part of screen.
-                Spacer(modifier = Modifier
-                    .height(36.dp).background(MaterialTheme.colors.primarySurface))
+                Spacer(Modifier.height(15.dp))
                 App()
             }
         }

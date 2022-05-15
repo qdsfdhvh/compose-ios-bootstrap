@@ -14,8 +14,8 @@ buildscript {
 }
 
 plugins {
-    kotlin("multiplatform") version "1.6.10"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev609"
+    kotlin("multiplatform") version "1.6.21"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev683"
 }
 
 version = "1.0-SNAPSHOT"
@@ -70,9 +70,11 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        
-        val uikitMain by creating {
+        val nativeMain by creating {
             dependsOn(commonMain)
+        }
+        val uikitMain by creating {
+            dependsOn(nativeMain)
         }
         val uikitX64Main by getting {
             dependsOn(uikitMain)
@@ -84,7 +86,10 @@ kotlin {
 }
 
 compose.experimental {
-    uikit.application {}
+    uikit.application {
+        bundleIdPrefix ="me.seiko.test"
+        projectName = "Compose-IOS-BootStrap"
+    }
 }
 
 tasks.withType<KotlinCompile> {

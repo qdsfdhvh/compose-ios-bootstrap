@@ -1,8 +1,6 @@
 import org.jetbrains.compose.compose
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 
 buildscript {
     repositories {
@@ -15,8 +13,8 @@ buildscript {
 
 plugins {
     kotlin("multiplatform") version "1.6.21"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev683"
-    id("com.rickclephas.kmp.nativecoroutines") version "0.12.1-new-mm"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev709"
+    id("com.rickclephas.kmp.nativecoroutines") version "0.12.2-new-mm"
 }
 
 version = "1.0-SNAPSHOT"
@@ -65,7 +63,7 @@ kotlin {
                 implementation(compose.runtime)
 
                 // Coroutine
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
             }
         }
 

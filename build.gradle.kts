@@ -108,3 +108,10 @@ kotlin {
         }
     }
 }
+
+// TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
+project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.java).configureEach {
+    kotlinOptions.freeCompilerArgs += listOf(
+        "-Xir-dce-runtime-diagnostic=log"
+    )
+}

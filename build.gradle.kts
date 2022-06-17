@@ -13,7 +13,7 @@ buildscript {
 
 plugins {
     kotlin("multiplatform") version "1.6.21"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev713"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev716"
     id("com.rickclephas.kmp.nativecoroutines") version "0.12.2-new-mm"
 }
 

@@ -44,12 +44,9 @@ fun App() {
     var navigationBarItemIndex by remember { mutableStateOf(0) }
     Scaffold(
         topBar = {
-            // CenterAlignedTopAppBar(title = {
-            //     Text("Compose for IoS")
-            // })
-            Box(Modifier.fillMaxWidth().height(36.dp), Alignment.CenterStart) {
+            CenterAlignedTopAppBar(title = {
                 Text("Compose for IoS")
-            }
+            })
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {}) {
@@ -57,31 +54,28 @@ fun App() {
             }
         },
         bottomBar = {
-            // NavigationBar {
-            //     NavigationBarItem(
-            //         selected = navigationBarItemIndex == 0,
-            //         enabled = navigationBarItemIndex != 0,
-            //         icon = { Icon(Icons.Filled.Home, contentDescription = null) },
-            //         label = { Text("Home") },
-            //         onClick = { navigationBarItemIndex = 0 },
-            //     )
-            //     NavigationBarItem(
-            //         selected = navigationBarItemIndex == 1,
-            //         enabled = navigationBarItemIndex != 1,
-            //         icon = { Icon(Icons.Filled.Person, contentDescription = null) },
-            //         label = { Text("Person") },
-            //         onClick = { navigationBarItemIndex = 1 },
-            //     )
-            //     NavigationBarItem(
-            //         selected = navigationBarItemIndex == 2,
-            //         enabled = navigationBarItemIndex != 2,
-            //         icon = { Icon(Icons.Filled.Settings, contentDescription = null) },
-            //         label = { Text("Setting") },
-            //         onClick = { navigationBarItemIndex = 2 },
-            //     )
-            // }
-            Box(Modifier.fillMaxWidth().height(55.dp), Alignment.CenterStart) {
-                Text("BottomBar")
+            NavigationBar {
+                NavigationBarItem(
+                    selected = navigationBarItemIndex == 0,
+                    enabled = navigationBarItemIndex != 0,
+                    icon = { Icon(Icons.Filled.Home, contentDescription = null) },
+                    label = { Text("Home") },
+                    onClick = { navigationBarItemIndex = 0 },
+                )
+                NavigationBarItem(
+                    selected = navigationBarItemIndex == 1,
+                    enabled = navigationBarItemIndex != 1,
+                    icon = { Icon(Icons.Filled.Person, contentDescription = null) },
+                    label = { Text("Person") },
+                    onClick = { navigationBarItemIndex = 1 },
+                )
+                NavigationBarItem(
+                    selected = navigationBarItemIndex == 2,
+                    enabled = navigationBarItemIndex != 2,
+                    icon = { Icon(Icons.Filled.Settings, contentDescription = null) },
+                    label = { Text("Setting") },
+                    onClick = { navigationBarItemIndex = 2 },
+                )
             }
         }
     ) { innerPadding ->

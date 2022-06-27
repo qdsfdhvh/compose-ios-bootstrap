@@ -1,9 +1,6 @@
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -26,6 +23,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,6 +40,7 @@ fun App() {
     var clickCount by remember { mutableStateOf(0) }
     var value by remember { mutableStateOf(0.5f) }
     var navigationBarItemIndex by remember { mutableStateOf(0) }
+    var input by remember { mutableStateOf("") }
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(title = {
@@ -82,15 +81,20 @@ fun App() {
         Column(Modifier.padding(innerPadding)) {
             Text("Hello Compose IoS!")
             Text("Click count: $clickCount")
+            TextField(input, onValueChange = { input = it })
             Button(onClick = {
                 clickCount++
+                input += 'a'
             }) {
                 Text("Click me!")
             }
             Switch(checked = checked, onCheckedChange = { checked = it })
             CircularProgressIndicator()
             LinearProgressIndicator()
-            Slider(value = value, onValueChange = { value = it })
+            Slider(
+                value = value,
+                onValueChange = { value = it },
+            )
             LazyRow(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(6.dp),

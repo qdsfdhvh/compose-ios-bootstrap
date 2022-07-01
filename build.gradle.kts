@@ -13,7 +13,7 @@ buildscript {
 
 plugins {
     kotlin("multiplatform") version "1.6.21"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev725"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev731"
     // id("com.rickclephas.kmp.nativecoroutines") version "0.12.2-new-mm"
 }
 
@@ -63,7 +63,7 @@ kotlin {
                 implementation(compose.runtime)
 
                 // Coroutine
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3")
             }
         }
 

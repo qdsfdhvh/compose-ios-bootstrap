@@ -12,7 +12,7 @@ buildscript {
 }
 
 plugins {
-    kotlin("multiplatform") version "1.6.21"
+    kotlin("multiplatform") version "1.7.0"
     id("org.jetbrains.compose") version "1.2.0-alpha01-dev731"
     // id("com.rickclephas.kmp.nativecoroutines") version "0.12.2-new-mm"
 }
@@ -114,4 +114,12 @@ project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.ja
     kotlinOptions.freeCompilerArgs += listOf(
         "-Xir-dce-runtime-diagnostic=log"
     )
+}
+
+configurations.all {
+    resolutionStrategy.dependencySubstitution {
+        substitute(module("org.jetbrains.compose.compiler:compiler")).apply {
+            using(module("androidx.compose.compiler:compiler:1.2.0"))
+        }
+    }
 }

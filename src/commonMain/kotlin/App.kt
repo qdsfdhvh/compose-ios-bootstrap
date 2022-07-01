@@ -25,6 +25,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,15 +33,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun App() {
+    val viewModel = remember { AppViewModel() }
+
     var checked by remember { mutableStateOf(false) }
     var clickCount by remember { mutableStateOf(0) }
     var value by remember { mutableStateOf(0.5f) }
     var navigationBarItemIndex by remember { mutableStateOf(0) }
-    var input by remember { mutableStateOf("") }
+    val input by viewModel.input.collectAsState()
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(title = {
@@ -81,10 +86,10 @@ fun App() {
         Column(Modifier.padding(innerPadding)) {
             Text("Hello Compose IoS!")
             Text("Click count: $clickCount")
-            TextField(input, onValueChange = { input = it })
+            TextField(input, onValueChange = {})
             Button(onClick = {
                 clickCount++
-                input += 'a'
+                viewModel.setInput(input + 'a')
             }) {
                 Text("Click me!")
             }
@@ -119,4 +124,10 @@ fun App() {
             }
         }
     }
+}
+
+class AppViewModel {
+    private val _input = MutableStateFlow("")
+    val input: StateFlow<String> get() = _input
+    fun setInput(value: String) { _input.tryEmit(value) }
 }

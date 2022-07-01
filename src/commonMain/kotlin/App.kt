@@ -1,6 +1,7 @@
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -87,6 +88,10 @@ fun App() {
             Text("Hello Compose IoS!")
             Text("Click count: $clickCount")
             TextField(input, onValueChange = {})
+            Row {
+                TestButton1("Test1")
+                TestButton2()
+            }
             Button(onClick = {
                 clickCount++
                 viewModel.setInput(input + 'a')
@@ -131,3 +136,11 @@ class AppViewModel {
     val input: StateFlow<String> get() = _input
     fun setInput(value: String) { _input.tryEmit(value) }
 }
+
+// Success
+@Composable
+expect fun TestButton1(text: String)
+
+// Failed
+@Composable
+expect fun TestButton2(text: String = "Test2")

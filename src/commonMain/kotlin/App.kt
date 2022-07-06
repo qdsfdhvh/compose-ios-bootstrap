@@ -90,7 +90,7 @@ fun App() {
             TextField(input, onValueChange = {})
             Row {
                 TestButton1("Test1")
-                TestButton2()
+                // TestButton2()
             }
             Button(onClick = {
                 clickCount++
@@ -142,5 +142,5 @@ class AppViewModel {
 expect fun TestButton1(text: String)
 
 // Failed
-@Composable
-expect fun TestButton2(text: String = "Test2")
+// @Composable
+// expect fun TestButton2(text: String = "Test2")

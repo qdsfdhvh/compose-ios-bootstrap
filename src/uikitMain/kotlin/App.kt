@@ -9,9 +9,9 @@ actual fun TestButton1(text: String) {
     }
 }
 
-@Composable
-actual fun TestButton2(text: String) {
-    Button(onClick = {}) {
-        Text(text)
-    }
-}
+// @Composable
+// actual fun TestButton2(text: String) {
+//     Button(onClick = {}) {
+//         Text(text)
+//     }
+// }
